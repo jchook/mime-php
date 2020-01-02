@@ -1,0 +1,183 @@
+Delivered-To: mrwesleyroberts@gmail.com
+Received: by 2002:a05:6402:382:0:0:0:0 with SMTP id o2csp3845459edv;
+        Fri, 25 Oct 2019 09:05:23 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqz+Ve5uacCsK9B3pFeHg6TBzGy5oEwejaYPgzBwqBqPi5JvZWBSsG+NA8OevZtYbNs6u5Eq
+X-Received: by 2002:a05:6214:178a:: with SMTP id ct10mr1292908qvb.94.1572019523060;
+        Fri, 25 Oct 2019 09:05:23 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1572019523; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=wSnob3vdE0DVPiQJbM/sjvwGI9Vj73xnwGy3LQEASwDSefNp1c0lZkeImVevsDD8tU
+         ts3hBmcn9mE9z1wvWp4LH0qvcyoOSl4yzRrG6jse5aZfdzvp6Gt4fLSuis8iTtKxyyJo
+         JZ+SPIg2gUWpOUEBmkqA+mB6wggEBPgrnWvS32O1NZeK/vIEBk0C0l9pU+KEBe84NjsU
+         1MwhSVsnvxmlw5GJEYz/ad6S4Z6pGimrBpwNji/pqQlEljTLpuTrCvir7cAj+pxOdCoI
+         BkumKBQQM3nXV3omQP5RGfg7Q+K9i2bjGUThl/brkSCHfx/RGTvOxdFyF+5HonCBkQDu
+         Y+zA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:dkim-signature:date
+         :dkim-signature;
+        bh=eokQRCy9/HlZWjcg73YKhQqvYQ+lUH+F86Kbz1n9Wfs=;
+        b=hl5QHKNp8kFRdtq7/MwCFYF9mJlR/Opdgh78OCrY7etpq+mmWPVz0rtqkGx1fe8aeb
+         5nisnGVMez+BAruTtJE+U5P7fg65ut1cKMxiPMxfLFzYqM4OyFUzvOmkemuOtSQfM5qj
+         SRqKttaFAnpR1drxpvxpZDiy7T5DmbXKyZCkZJF1PhZ9HWpO8n71fjU+oFi6mb8mH68s
+         3qaaCWftlIlXurW/l7RWnvUnawFFqbZZeSUtCWFvUxlSSpFDFunThgddPFbxJLIrjFRI
+         8gcx1TTn7CYfT2Aev1kwdulKelwc6yjJvyhld0wiLnWNcl2aIIUvkMzjDtlTYGl7QFq2
+         68LA==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@a.zinc.email header.s=20181006003900z header.b=lndEC7wM;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=tu5nk9KT;
+       arc=pass (i=1 dkim=pass dkdomain=github.com);
+       spf=pass (google.com: domain of ret-3015514617138758880-ngg9lkvtxfmc@zbounces.a.zinc.email designates 45.79.152.111 as permitted sender) smtp.mailfrom=ret-3015514617138758880-NGg9lKvtXfmc@zbounces.a.zinc.email;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <ret-3015514617138758880-NGg9lKvtXfmc@zbounces.a.zinc.email>
+Received: from mx1.zinc.email (mail.zinc.email. [45.79.152.111])
+        by mx.google.com with ESMTPS id a11si1717644qtb.297.2019.10.25.09.05.22
+        for <mrwesleyroberts@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Oct 2019 09:05:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ret-3015514617138758880-ngg9lkvtxfmc@zbounces.a.zinc.email designates 45.79.152.111 as permitted sender) client-ip=45.79.152.111;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@a.zinc.email header.s=20181006003900z header.b=lndEC7wM;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=tu5nk9KT;
+       arc=pass (i=1 dkim=pass dkdomain=github.com);
+       spf=pass (google.com: domain of ret-3015514617138758880-ngg9lkvtxfmc@zbounces.a.zinc.email designates 45.79.152.111 as permitted sender) smtp.mailfrom=ret-3015514617138758880-NGg9lKvtXfmc@zbounces.a.zinc.email;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Received: from mx1.zinc.email (zinc [127.0.0.1])
+	by mx1.zinc.email (Postfix) with ESMTP id 60CA33DB22
+	for <mrwesleyroberts@gmail.com>; Fri, 25 Oct 2019 16:05:22 +0000 (UTC)
+Authentication-Results: mx1.zinc.email;
+	dkim=pass (2048-bit key; unprotected) header.d=a.zinc.email header.i=@a.zinc.email header.b="lndEC7wM";
+	dkim=pass (1024-bit key; unprotected) header.d=github.com header.i=@github.com header.b="tu5nk9KT";
+	dkim-atps=neutral
+ARC-Authentication-Results: i=1; a.zinc.email;
+	dkim=pass header.d=github.com header.i="@github.com" header.b=tu5nk9KT;
+	dkim-atps=neutral
+ARC-Message-Signature: i=1; a=rsa-sha256; d=a.zinc.email; s=20181006003900z;
+	c=relaxed/relaxed; t=1572019522;
+	h=message-id:from:from:subject:date:list-unsubscribe:reply-to:
+	 mime-version:to:dkim-signature;
+	bh=eokQRCy9/HlZWjcg73YKhQqvYQ+lUH+F86Kbz1n9Wfs=;
+	b=OKwQrp2y7wll+hjqBltzj2WaQR3P/DkS9bhUyQni3zqYc3OOhPv7fvBovjgw/u4G5w
+	 2zuDafpOUHrAPWoawVVxZ4wohL5znm0bcDF3qRZf0vFxb6Pyq8oFFU72p4nGzkByjJ/Z
+	 GmtK/C5i613hWmL7gZlnnjv8q1zSwLwUMNNP9/F0rEUL0nz3ba7+tMtHrGMfrjMSHpGd
+	 KiDMeQb6m7hoZJbUnEfvOVxAHTGR43RjyNTLEZZ1j+rVI0C0b0ttUkzige3W0Jv+de7k
+	 GSlqga3yg+1sno5uRKXq3aJCPEzkwiN8kdrrNPIM3BWRxzvv1OtBN2ZhFxpW5YGGBy3z
+	 epRQ==;
+ARC-Seal: i=1; a=rsa-sha256; d=a.zinc.email; s=20181006003900z;
+	t=1572019522; cv=none;
+	b=JTggipySMWtnjuCkqkJKs/jWcKzdhfieig/MPamC6grujNhj45DW4GfjERLDfzpDFy
+	 +ozYN9XL7/Zz7xzDe0/UXO7eil57NE5Wn3nDvdaYYF1P0Z4Bu53/z92RwuCwlpMrebRL
+	 qX1xUgxv4B34kYfbCVq3UO7VQXUsg7qMSr4o+2y3XkEWbs1XD/kakCloiQl69X149ZLy
+	 fR/41JgG9jIt0pvbli7libyTxM6ZnkZFA4dCxjEeaI2061/dwnDi+8QjcK22MA5iKiwl
+	 8iTMq6eULb9UClL4uFfm+ba97ZTHkIDQ2aMcIHg6u0/jBj+VxRvytmbcdRQ4tPskYwql
+	 5pzQ==;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed; h=date:from:to:subject;
+	q=dns/txt; d=a.zinc.email; s=20181006003900z; t=1572019522;
+	bh=eokQRCy9/HlZWjcg73YKhQqvYQ+lUH+F86Kbz1n9Wfs=;
+	b=lndEC7wMrX5Q+d2gwVcsBk0IgaEqIN3oeABh+JdaBPwOq+MYYnam3FYnGx7qWYonuE
+	 SYBOtw2qqZ0dclwfKeZxC/BM8ZQ+QTRoSIiHJFpeTuCS1EpmyiFWTKzE7wnFkDeWhiv2
+	 OT8f2vmsqa8ZDs5+e3yq/nv1H6aCOz02vVElqym+HfHD4/JoWstL8Gh4ewGHMoorgxWR
+	 +SoX3qdFFTIe0a1o/iDnXQnoEkcysLhQS86RUbtsSZqV2Tg7bHN50G8SAP3r4xcYQPzP
+	 v17vXT00B1YtZLL0lFGBaNEvbNfTVs/PDU1YeiMIqVODJEJk40emenL6LhMeAwGEW3QM
+	 YHsw==;
+Received: from out-1.smtp.github.com (out-1.smtp.github.com [192.30.252.192])
+	by mx1.zinc.email (Postfix) with ESMTPS id 1E2203DB1F
+	for <takq@a.zinc.email>; Fri, 25 Oct 2019 16:05:21 +0000 (UTC)
+Date: Fri, 25 Oct 2019 09:05:21 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1572019521;
+	bh=eokQRCy9/HlZWjcg73YKhQqvYQ+lUH+F86Kbz1n9Wfs=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=tu5nk9KTbfQfxiFCEjWY6G9juBt9UJz0z1o9iVbbFpRFm3TKPhpaDI90l7Zek1NOi
+	 A8TA8Pd/Nj+mjDnnDLcqAZ2p0yXPCIg+wscNMH3VHExeRQL5BZbiL+4MT4AZVaC4Jo
+	 IVciNiizyb1l0PjsKwqU03R3t76PoFyKL2M4qr1I=
+From: Joseph Thomaschaske <notifications@github.com>
+Reply-To: axios/axios <reply+AABPH6SVZ5JQF6DILKPZRCN3YBO5DEVBNHHBFUUBTE@reply.github.com>
+To: axios/axios <axios@noreply.github.com>
+Cc: Wes Roberts <takq@a.zinc.email>, 
+ Comment <comment@noreply.github.com>
+Message-ID: <axios/axios/issues/1495/546413577@github.com>
+In-Reply-To: <axios/axios/issues/1495@github.com>
+References: <axios/axios/issues/1495@github.com>
+Subject: Re: [axios/axios] Network Error in using https with self-signed
+ certification  (#1495)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5db31d4198982_13e93fc0720cd95c18896d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: joeythomaschaske
+X-GitHub-Recipient: jchook
+X-GitHub-Reason: comment
+List-ID: axios/axios <axios.axios.github.com>
+List-Archive: https://github.com/axios/axios
+List-Post: <mailto:reply+AABPH6SVZ5JQF6DILKPZRCN3YBO5DEVBNHHBFUUBTE@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AABPH6SVZ5JQF6DILKPZRCN3YBO5DEVBNHHBFUUBTE@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AABPH6VC2K6QVCFIRSAMMG3QQMKMDANCNFSM4E3NTETQ>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: takq@a.zinc.email
+
+
+----==_mimepart_5db31d4198982_13e93fc0720cd95c18896d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+`rejectUnauthorized` is dangerous to use. You're ignoring vital warnings.
+
+I would suggest setting the global httpAgent to use the certificates in the same manner instead of passing them to axios to use.
+
+```
+const https = require('https');
+https.globalAgent.options = {
+    ca: ...,
+    cert: ...,
+    key: ...
+};
+```
+
+This handles TLS securely and you're not ignoring warnings.
+
+-- 
+You are receiving this because you commented.
+Reply to this email directly or view it on GitHub:
+https://github.com/axios/axios/issues/1495#issuecomment-546413577
+----==_mimepart_5db31d4198982_13e93fc0720cd95c18896d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p><code>rejectUnauthorized</code> is dangerous to use. You're ignoring vital warnings.</p>
+<p>I would suggest setting the global httpAgent to use the certificates in the same manner instead of passing them to axios to use.</p>
+<pre><code>const https = require('https');
+https.globalAgent.options = {
+    ca: ...,
+    cert: ...,
+    key: ...
+};
+</code></pre>
+<p>This handles TLS securely and you're not ignoring warnings.</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you commented.<br />Reply to this email directly, <a href="https://github.com/axios/axios/issues/1495?email_source=notifications&amp;email_token=AABPH6ROONO2CHL53I63HLTQQMKMDA5CNFSM4E3NTET2YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOECIZYCI#issuecomment-546413577">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AABPH6QSZA554YIXSBLUOHDQQMKMDANCNFSM4E3NTETQ">unsubscribe</a>.<img src="https://github.com/notifications/beacon/AABPH6VYHJ5JYDZQK46CBJDQQMKMDA5CNFSM4E3NTET2YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOECIZYCI.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/axios/axios/issues/1495?email_source=notifications\u0026email_token=AABPH6ROONO2CHL53I63HLTQQMKMDA5CNFSM4E3NTET2YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOECIZYCI#issuecomment-546413577",
+"url": "https://github.com/axios/axios/issues/1495?email_source=notifications\u0026email_token=AABPH6ROONO2CHL53I63HLTQQMKMDA5CNFSM4E3NTET2YY3PNVWWK3TUL52HS4DFVREXG43VMVBW63LNMVXHJKTDN5WW2ZLOORPWSZGOECIZYCI#issuecomment-546413577",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5db31d4198982_13e93fc0720cd95c18896d--

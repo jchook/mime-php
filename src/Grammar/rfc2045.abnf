@@ -1,0 +1,121 @@
+; By itself, however, this grammar is incomplete.  It refers by name to
+; several syntax rules that are defined by RFC 822.  Rather than
+; reproduce those definitions here, and risk unintentional differences
+; between the two, this document simply refers the reader to RFC 822
+; for the remaining definitions. Wherever a term is undefined, it
+; refers to the RFC 822 definition.
+
+attribute := token
+            ; Matching of attributes
+            ; is ALWAYS case-insensitive.
+
+composite-type := "message" / "multipart" / extension-token
+
+content := "Content-Type" ":" type "/" subtype
+          *(";" parameter)
+          ; Matching of media type and subtype
+          ; is ALWAYS case-insensitive.
+
+description := "Content-Description" ":" *text
+
+discrete-type := "text" / "image" / "audio" / "video" /
+                "application" / extension-token
+
+encoding := "Content-Transfer-Encoding" ":" mechanism
+
+entity-headers := [ content CRLF ]
+                 [ encoding CRLF ]
+                 [ id CRLF ]
+                 [ description CRLF ]
+                 *( MIME-extension-field CRLF )
+
+extension-token := ietf-token / x-token
+
+hex-octet := "=" 2(DIGIT / "A" / "B" / "C" / "D" / "E" / "F")
+            ; Octet must be used for characters > 127, =,
+            ; SPACEs or TABs at the ends of lines, and is
+            ; recommended for any character not listed in
+            ; RFC 2049 as "mail-safe".
+
+iana-token := <A publicly-defined extension token. Tokens
+              of this form must be registered with IANA
+              as specified in RFC 2048.>
+
+ietf-token := <An extension token defined by a
+               standards-track RFC and registered
+               with IANA.>
+
+id := "Content-ID" ":" msg-id
+
+mechanism := "7bit" / "8bit" / "binary" /
+             "quoted-printable" / "base64" /
+             ietf-token / x-token
+
+MIME-extension-field := <Any RFC 822 header field which
+                         begins with the string
+                         "Content-">
+
+MIME-message-headers := entity-headers
+                        fields
+                        version CRLF
+                        ; The ordering of the header
+                        ; fields implied by this BNF
+                        ; definition should be ignored.
+
+MIME-part-headers := entity-headers
+                     [fields]
+                     ; Any field not beginning with
+                     ; "content-" can have no defined
+                     ; meaning and may be ignored.
+                     ; The ordering of the header
+                     ; fields implied by this BNF
+                     ; definition should be ignored.
+
+parameter := attribute "=" value
+
+ptext := hex-octet / safe-char
+
+qp-line := *(qp-segment transport-padding CRLF)
+           qp-part transport-padding
+
+qp-part := qp-section
+           ; Maximum length of 76 characters
+
+qp-section := [*(ptext / SPACE / TAB) ptext]
+
+qp-segment := qp-section *(SPACE / TAB) "="
+              ; Maximum length of 76 characters
+
+quoted-printable := qp-line *(CRLF qp-line)
+
+safe-char := <any octet with decimal value of 33 through
+             60 inclusive, and 62 through 126>
+             ; Characters not listed as "mail-safe" in
+             ; RFC 2049 are also not recommended.
+
+subtype := extension-token / iana-token
+
+token := 1*<any (US-ASCII) CHAR except SPACE, CTLs,
+            or tspecials>
+
+transport-padding := *LWSP-char
+                     ; Composers MUST NOT generate
+                     ; non-zero length transport
+                     ; padding, but receivers MUST
+                     ; be able to handle padding
+                     ; added by message transports.
+
+tspecials :=  "(" / ")" / "<" / ">" / "@" /
+              "," / ";" / ":" / "\" / <">
+              "/" / "[" / "]" / "?" / "="
+              ; Must be in quoted-string,
+              ; to use within parameter values
+
+type := discrete-type / composite-type
+
+value := token / quoted-string
+
+version := "MIME-Version" ":" 1*DIGIT "." 1*DIGIT
+
+x-token := <The two characters "X-" or "x-" followed, with
+            no  intervening white space, by any token>

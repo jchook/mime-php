@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=$(dirname $(dirname "$(readlink -f "$0")"))
+"$DIR/bin/tests" --coverage-html="${DIR}/coverage" --whitelist "${DIR}/src" --coverage-text "$@"

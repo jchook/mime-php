@@ -1,0 +1,262 @@
+Delivered-To: wroberts@brandyourself.com
+Received: by 2002:a17:906:14c8:0:0:0:0 with SMTP id y8csp417233ejc;
+        Fri, 6 Dec 2019 01:57:54 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwafhNZoprrA+eTAXxBo58hEejJQh/DLiVawFj/PG0svMJq5MAOXhmvH29FhhdIH5QfDLNW
+X-Received: by 2002:a5d:9592:: with SMTP id a18mr9581360ioo.186.1575626274602;
+        Fri, 06 Dec 2019 01:57:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1575626274; cv=none;
+        d=google.com; s=arc-20160816;
+        b=mp98atG7BJulVWGiMuVwP7CSUwq8SXdvKIVmltsPDCB55VMUhOHOrr+vAukbYA34ai
+         nC9TAk+Qcrv4AfrluWGGDxC1GfeZ98doPY8q5vPmxVIJjTYvLJU1SqzowIFs+5pB/jT7
+         ocQY2eiRPzLo2jXC/t4Nv5HdMTwtJmg71QBymUHqh+p4UnIUJkZs23yJWZrrvZla94Ot
+         dTqusQhtduMjh/8FHKT9+b+EXPzM9FACYnaUA1SdqUikSKBvtKaHH/CQXHsgGwWjV1Pt
+         5pMS2FAtEuPCLDjnQPuezu958wQ+1rAVf91IZ9MyOwk3UkaA71wpXl2HEmpF44y7zCgy
+         0JnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:list-unsubscribe:precedence:sender
+         :reply-to:mime-version:dkim-signature;
+        bh=7QrbOel0c8IJ9VL1HZMogrF/Wf7hvP7AM19ed5iidr4=;
+        b=bv9Z3VIL+WR40EhXQ3Ix/lNZNPlztRbTZOZ04qzjHzn/e6EYUZNwNhdq6XXFKfnSFx
+         JBrRvrSDdNoX7q2lyOjee/wRJzlNC2wH7G3HKnkMb2QQRY6D77Mqe2Ld0ghNTa992tY7
+         9mjckD6ldeAtg4BPosCEe8V3SEUKpljpJezz9Oqg0t0Z1clF2NHG9Vj3uXpiXWaU7rm3
+         OMlJnKA3nrJ3XmnyygaAVQwBwbp5iWy5gj4GGFdB9G0fHQh8897P70KMnaFSCZQ0QFyc
+         outgsYAFcf7VhaLUNHnooBC2UG86fjY6mtLYkqBlSOtGSMn49eljxccoYO5Hdty3xpd6
+         120w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=BwlfqrxQ;
+       spf=pass (google.com: domain of 3isbqxrekaawz03q1xa+rqqp1309as00sxq.o0y@feedburner.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ISbqXREKAAwz03q1xA+rqqp1309As00sxq.o0y@feedburner.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3ISbqXREKAAwz03q1xA+rqqp1309As00sxq.o0y@feedburner.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id d12sor8424165ile.21.2019.12.06.01.57.54
+        for <wroberts@brandyourself.com>
+        (Google Transport Security);
+        Fri, 06 Dec 2019 01:57:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3isbqxrekaawz03q1xa+rqqp1309as00sxq.o0y@feedburner.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=BwlfqrxQ;
+       spf=pass (google.com: domain of 3isbqxrekaawz03q1xa+rqqp1309as00sxq.o0y@feedburner.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ISbqXREKAAwz03q1xA+rqqp1309As00sxq.o0y@feedburner.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:reply-to:sender:precedence:list-unsubscribe:message-id
+         :date:subject:from:to;
+        bh=7QrbOel0c8IJ9VL1HZMogrF/Wf7hvP7AM19ed5iidr4=;
+        b=BwlfqrxQhwFJVgBWoJvmR/YS6xxWRy3vRE3NWwQCDArsiyKrfSEWS7mt/lk4guUpil
+         3xZyh6zziZvsLnp/6jyYcM6gSYhyXScWDOY28pnwkeUbKUIxxAy5y7xkHfsrCCZmPx3Q
+         DbayZuMzsgccgwS3M46iMZVIhPjpBvyDfRa/lBX0/YF4/nPztkqYPTwIDicyq3Os0QeG
+         arsPWby8GlGcq9pEydzzX+1OryeWDNpX+G8mydBWSu4DT6Ypy/laB9gI2fpknsJoeliq
+         VrdTcZE7pBH/A4sRGmL123xViouo98f0RUGBlisUX6DYIdebepcrkvwxGP3JJ01Z49Xt
+         taSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:sender:precedence
+         :list-unsubscribe:message-id:date:subject:from:to;
+        bh=7QrbOel0c8IJ9VL1HZMogrF/Wf7hvP7AM19ed5iidr4=;
+        b=hwYXOmd9nlmK5ZiZGdnYqn2BgxS2YBBSPqRaKAskMdBW99eguTSPssgQGaBYB7qBpm
+         sQP0xWXv/MYbRdAzXuXXYdImV9K7oE2jFBY5pM64ttsMJ4CXWRVsz7P5hOQJmu8ygRUh
+         Kyb+kibPzuXdtJl+rAYse8tL4FWMUO51yno8bY4PoFXHJ2GNDl1inuCd3rmrWi63fapy
+         J/eDiSalS4V/7XlR6v6uANxJ9deja7pvyRt96MzMN2BsLw0cXIbQbvoX+Iehk8+Rk/a3
+         EeUaMcAxFVwUxm3GnQfuEOlcfZy8IWIXL8VT4a7iyd7LC68jj8ceu5JITF3OZ7lBGxbn
+         k32Q==
+X-Gm-Message-State: APjAAAX4JByDlNM9s2RLf4AqhsEdnmkI0FSIyOTUbIZPt+HOf9UpkB7z
+	oxCKZTNKwMOVM8F4m8n8iRrZoDgyBEsQYcPXEfVrKD8=
+MIME-Version: 1.0
+X-Received: by 2002:a92:9e5d:: with SMTP id q90mt13075396ili.43.1575626273896;
+ Fri, 06 Dec 2019 01:57:53 -0800 (PST)
+Reply-To: Google Webmaster Central Blog <g.webmaster.central.blog@gmail.com>
+Sender: noreply+feedproxy@google.com
+Precedence: bulk
+List-Unsubscribe: <https://feedburner.google.com/fb/a/mailunsubscribe?k=5dLXqUXrSJLufb5L3Y9yGdpjxvY>
+Message-ID: <0000000000005ac0650599061425@google.com>
+Date: Fri, 06 Dec 2019 09:57:53 +0000
+Subject: Official Google Webmaster Central Blog
+From: Google Webmaster Central Blog <noreply+feedproxy@google.com>
+To: wroberts@brandyourself.com
+Content-Type: multipart/alternative; boundary="0000000000005b78ef05990614a4"
+
+--0000000000005b78ef05990614a4
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+R29vZ2xlIFdlYm1hc3RlciBDZW50cmFsIEJsb2cNCg0KLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8v
+Ly8vLy8vLy8vLy8vLy8vLy8vLw0KUGFja2FnZSBUcmFja2luZyBFYXJseSBBY2Nlc3MgUHJvZ3Jh
+bQ0KDQpQb3N0ZWQ6IDA1IERlYyAyMDE5IDExOjAzIEFNIFBTVA0KaHR0cDovL2ZlZWRwcm94eS5n
+b29nbGUuY29tL35yL2Jsb2dzcG90L2FtREcvfjMvZmo2RDR0ck5MX28vcGFja2FnZS10cmFja2lu
+Zy1lYXJseS1hY2Nlc3MtcHJvZ3JhbS5odG1sP3V0bV9zb3VyY2U9ZmVlZGJ1cm5lciZ1dG1fbWVk
+aXVtPWVtYWlsDQoNClBlb3BsZSBmcmVxdWVudGx5IGNvbWUgdG8gR29vZ2xlIFNlYXJjaCBsb29r
+aW5nIHRvIGZpbmQgaW5mb3JtYXRpb24gb24gdGhlICANCnN0YXR1cyBvZiB0aGVpciBwYWNrYWdl
+cy4gVG8gbWFrZSBpdCBlYXNpZXIgdG8gZmluZCwgd2UgaGF2ZSBjcmVhdGVkIGEgbmV3ICANCnBh
+Y2thZ2UgdHJhY2tpbmcgZmVhdHVyZSB0aGF0IGVuYWJsZXMgc2hpcHBpbmcgY29tcGFuaWVzIHRv
+IHNob3cgcGVvcGxlIHRoZSAgDQpzdGF0dXMgb2YgdGhlaXIgcGFja2FnZXMgcmlnaHQgb24gU2Vh
+cmNoLiBIZXJl4oCZcyBhbiBleGFtcGxlIG9mIGhvdyB0aGlzICANCmluZm9ybWF0aW9uIG1heSBh
+cHBlYXI6DQoNCg0KDQpUaHJvdWdoIHRoZSBwYWNrYWdlIHRyYWNraW5nIEVhcmx5IEFkb3B0ZXJz
+IFByb2dyYW0sIHdoaWNoIGlzIGF2YWlsYWJsZSBpbiAgDQphbGwgY291bnRyaWVzLCBzaGlwcGlu
+ZyBjb21wYW5pZXMgY2FuIHNpZ24tdXAgdG8gcGFydGljaXBhdGUgaW4gdGhpcyAgDQpmZWF0dXJl
+IGFuZCBnaXZlIGZlZWRiYWNrIG9uIGhvdyB0byBpbXByb3ZlIGl0LiBUbyB0YWtlIHBhcnQgaW4g
+dGhlICANCnByb2dyYW0sIGEgY2FycmllciB3aWxsIG5lZWQgdG8gcHJvdmlkZSBhIFJFU1RmdWwg
+SlNPTiBvciBYTUwgQVBJIHRoYXQgIA0KcmV0dXJucyB0aGUgcGFja2FnZSB0cmFja2luZyBpbmZv
+cm1hdGlvbi4gV2UgY2FuIHdvcmsgd2l0aCB5b3UgdG8gcmV1c2UgYW4gIA0KZXhpc3RpbmcgQVBJ
+IG9yIHNldHVwIGEgbmV3IG9uZS4NCg0KSW50ZXJlc3RlZCBpbiBwcm92aWRpbmcgcGFja2FnZSB0
+cmFja2luZyBpbmZvcm1hdGlvbiB0byB5b3VyIGN1c3RvbWVycz8gIA0KUGxlYXNlIHJldmlldyB0
+aGUgZnVsbCBlbGlnaWJpbGl0eSByZXF1aXJlbWVudHMgYW5kIGZpbGwgb3V0IHRoZSBpbnRlcmVz
+dCAgDQpmb3JtLg0KDQpJZiB5b3UgaGF2ZSBhbnkgcXVlc3Rpb25zLCBsZXQgdXMga25vdyB0aHJv
+dWdoIHRoZSBmb3J1bSBvciBvbiBUd2l0dGVyLg0KUG9zdGVkIGJ5IEFsbGVuIEhhcnZleSwgUHJv
+ZHVjdCBNYW5hZ2VyDQoNCg0KDQotLQ0KWW91IGFyZSBzdWJzY3JpYmVkIHRvIGVtYWlsIHVwZGF0
+ZXMgZnJvbSAiR29vZ2xlIFdlYm1hc3RlciBDZW50cmFsIEJsb2cuIg0KVG8gc3RvcCByZWNlaXZp
+bmcgdGhlc2UgZW1haWxzLCB5b3UgbWF5IHVuc3Vic2NyaWJlIG5vdzogIA0KaHR0cHM6Ly9mZWVk
+YnVybmVyLmdvb2dsZS5jb20vZmIvYS9tYWlsdW5zdWJzY3JpYmU/az01ZExYcVVYclNKTHVmYjVM
+M1k5eUdkcGp4dlkNCg0KRW1haWwgZGVsaXZlcnkgcG93ZXJlZCBieSBHb29nbGUuDQpHb29nbGUs
+IDE2MDAgQW1waGl0aGVhdHJlIFBhcmt3YXksIE1vdW50YWluIFZpZXcsIENBIDk0MDQzLCBVbml0
+ZWQgU3RhdGVzDQoNCg==
+--0000000000005b78ef05990614a4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<META http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<title>Google Webmaster Central Blog</title>
+</head>
+<body>
+<style type=3D"text/css">
+
+                        h1 a:hover {background-color:#888;color:#fff ! impo=
+rtant;}
+
+                        div#emailbody table#itemcontentlist tr td div ul {
+                                        list-style-type:square;
+                                        padding-left:1em;
+                        }
+       =20
+                        div#emailbody table#itemcontentlist tr td div block=
+quote {
+                                padding-left:6px;
+                                border-left: 6px solid #dadada;
+                                margin-left:1em;
+                        }
+       =20
+                        div#emailbody table#itemcontentlist tr td div li {
+                                margin-bottom:1em;
+                                margin-left:1em;
+                        }
+
+
+                        table#itemcontentlist tr td a:link, table#itemconte=
+ntlist tr td a:visited, table#itemcontentlist tr td a:active, ul#summarylis=
+t li a {
+                                color:#000099;
+                                font-weight:bold;
+                                text-decoration:none;
+                        }      =20
+
+                        img {border:none;}
+
+
+                </style>
+<div xmlns=3D"http://www.w3.org/1999/xhtml" id=3D"emailbody" style=3D"margi=
+n:0 2em;font-family:Arial, Helvetica, sans-serif;line-height:140%;font-size=
+:13px;color:#000000;">
+<table style=3D"border:0;padding:0;margin:0;width:100%">
+<tr>
+<td style=3D"vertical-align:top" width=3D"99%">
+<h1 style=3D"margin:0;padding-bottom:6px;">
+<a style=3D"color:#888;font-size:22px;font-family:Arial, Helvetica, sans-se=
+rif;font-weight:normal;text-decoration:none;" href=3D"http://webmasters.goo=
+gleblog.com/" title=3D"(http://webmasters.googleblog.com/)">Official Google=
+ Webmaster Central Blog</a>
+</h1>
+</td>
+<td width=3D"1%">
+<a href=3D"http://webmasters.googleblog.com/">
+<img src=3D"http://www.google.com/webmasters/images/tools2.gif" alt=3D"Link=
+ to Google Webmaster Central Blog" id=3D"feedimage" style=3D"padding:0 0 10=
+px 3px;border:0;" />
+</a>
+</td>
+</tr>
+</table>
+<hr style=3D"border:1px solid #ccc;padding:0;margin:0" />
+<table id=3D"itemcontentlist">
+<tr xmlns=3D"">
+<td style=3D"margin-bottom:0;line-height:1.4em;">
+<p style=3D"margin:1em 0 3px 0;">
+<a name=3D"1" style=3D"font-family:Arial, Helvetica, sans-serif;font-size:2=
+0px;" href=3D"http://feedproxy.google.com/~r/blogspot/amDG/~3/fj6D4trNL_o/p=
+ackage-tracking-early-access-program.html?utm_source=3Dfeedburner&amp;utm_m=
+edium=3Demail">Package Tracking Early Access Program</a>
+</p>
+<p style=3D"font-size:13px;color:#555;margin:9px 0 3px 0;font-family:Arial,=
+ Helvetica, sans-serif;line-height:140%;font-size:13px;">
+<span>Posted:</span> 05 Dec 2019 11:03 AM PST</p>
+<div style=3D"margin:0;font-family:Arial, Helvetica, sans-serif;line-height=
+:140%;font-size:13px;color:#000000;"><div dir=3D"ltr" style=3D"text-align: =
+left;" trbidi=3D"on"><span id=3D"docs-internal-guid-ef7194b5-7fff-b74e-e27e=
+-5fea019b44b4"><span style=3D"font-family: &quot;arial&quot;; font-size: 11=
+pt; vertical-align: baseline; white-space: pre-wrap;">People frequently com=
+e to Google Search looking to find information on the status of their packa=
+ges. To make it easier to find, we have created a new package tracking feat=
+ure that enables shipping companies to show people the status of their pack=
+ages right on Search. Here=E2=80=99s an example of how this information may=
+ appear:</span></span><br /><div class=3D"separator" style=3D"clear: both; =
+text-align: center;"><a href=3D"https://1.bp.blogspot.com/-npbe0tC3kIs/XekD=
+jLvoqfI/AAAAAAAAD14/JjlCZgdfnj8bLu_oC3sVF6iweCK4GcmsgCLcBGAsYHQ/s1600/packa=
+ge-tracking.png" imageanchor=3D"1" style=3D"margin-left: 1em; margin-right:=
+ 1em;"><img alt=3D"package tracking search result" border=3D"0" data-origin=
+al-height=3D"808" data-original-width=3D"800" height=3D"640" src=3D"https:/=
+/1.bp.blogspot.com/-npbe0tC3kIs/XekDjLvoqfI/AAAAAAAAD14/JjlCZgdfnj8bLu_oC3s=
+VF6iweCK4GcmsgCLcBGAsYHQ/s640/package-tracking.png" title=3D"" width=3D"632=
+" /></a></div><span style=3D"font-family: &quot;arial&quot;; font-size: 11p=
+t; vertical-align: baseline; white-space: pre-wrap;"><br /></span><br /><br=
+ />Through the package tracking Early Adopters Program, which is available =
+in all countries, shipping companies can sign-up to participate in this fea=
+ture and give feedback on how to improve it. To take part in the program, a=
+ carrier will need to provide a RESTful JSON or XML API that returns the pa=
+ckage tracking information. We can work with you to reuse an existing API o=
+r setup a new one. <br /><br />Interested in providing package tracking inf=
+ormation to your customers? Please review the full <a href=3D"https://devel=
+opers.google.com/search/docs/guides/package-tracking">eligibility requireme=
+nts</a> and <a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSeHkDALO5vJ=
+g1l4GaUkkBzxeqDtkJukJokBBOtbmlH9Vk9M_w/viewform">fill out the interest form=
+</a>.<br /><br />If you have any questions, let us know through <a href=3D"=
+https://support.google.com/webmasters/threads?thread_filter=3D(category:sea=
+rch_console)">the forum</a> or <a href=3D"https://twitter.com/googlewmc">on=
+ Twitter</a>.<span style=3D"font-family: &quot;arial&quot;; font-size: 11pt=
+; vertical-align: baseline; white-space: pre-wrap;"><br /></span><span clas=
+s=3D"byline-author">Posted by Allen Harvey, Product Manager</span></div><di=
+v class=3D"feedflare">
+<a href=3D"http://feeds.feedburner.com/~ff/blogspot/amDG?a=3Dfj6D4trNL_o:uV=
+TbvuCBMYg:yIl2AUoC8zA"><img src=3D"http://feeds.feedburner.com/~ff/blogspot=
+/amDG?d=3DyIl2AUoC8zA" border=3D"0"></img></a>
+</div><img src=3D"http://feeds.feedburner.com/~r/blogspot/amDG/~4/fj6D4trNL=
+_o?utm_source=3Dfeedburner&utm_medium=3Demail" height=3D"1" width=3D"1" alt=
+=3D""/></div>
+</td>
+</tr>
+</table>
+<table style=3D"border-top:1px solid #999;padding-top:4px;margin-top:1.5em;=
+width:100%" id=3D"footer">
+<tr>
+<td style=3D"text-align:left;font-family:Helvetica,Arial,Sans-Serif;font-si=
+ze:11px;margin:0 6px 1.2em 0;color:#333;">You are subscribed to email updat=
+es from <a href=3D"http://webmasters.googleblog.com/">Google Webmaster Cent=
+ral Blog</a>.<br />To stop receiving these emails, you may <a href=3D"https=
+://feedburner.google.com/fb/a/mailunsubscribe?k=3D5dLXqUXrSJLufb5L3Y9yGdpjx=
+vY">unsubscribe now</a>.</td>
+<td style=3D"font-family:Helvetica,Arial,Sans-Serif;font-size:11px;margin:0=
+ 6px 1.2em 0;color:#333;text-align:right;vertical-align:top">Email delivery=
+ powered by Google</td>
+</tr>
+<tr>
+<td colspan=3D"2" style=3D"text-align:left;font-family:Helvetica,Arial,Sans=
+-Serif;font-size:11px;margin:0 6px 1.2em 0;color:#333;">Google, 1600 Amphit=
+heatre Parkway, Mountain View, CA 94043, United States</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+--0000000000005b78ef05990614a4--

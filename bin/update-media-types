@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+
+// Download extensions from a trusted and up-to-date source
+$data = array_map('trim', explode("\n",
+	file_get_contents(
+		'https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types'
+	))
+);
+
+// Parse file
+$map = [];
+foreach ($data as $line) {
+	if (!$line || $line[0] === '#') {
+		continue;
+	}
+	$exts = preg_split('/\s+/', $line);
+	$type = array_shift($exts);
+	foreach ($exts as $ext) {
+		$map[$ext][] = $type;
+	}
+}
+
+// Clean-up output
+$data = var_export($map, true);
+$data = preg_replace('/array \(/', '[', $data);
+$data = preg_replace('/\)/', ']', $data);
+$data = preg_replace('/  /', "\t", $data);
+$data = preg_replace('/([0-9]+)\s+=>\s+/', '', $data);
+$data = preg_replace('/\s+=>\s+/', " => ", $data);
+$data = preg_replace('/\n\t\t\'/', "'", $data);
+$data = preg_replace('/\n\t\]/', "]", $data);
+$data = preg_replace('/,\]/', ']', $data);
+
+// Write PHP source code
+file_put_contents(
+	dirname(__DIR__) . '/src/Element/includes/file-extension-types.php',
+	'<?php return ' . $data . ';'
+);

@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=$(dirname $(dirname "$(readlink -f "$0")"))
+"${DIR}/vendor/bin/phpunit" "${DIR}/spec" "$@" | awk -f "${DIR}/etc/phpunit.colorize.awk"

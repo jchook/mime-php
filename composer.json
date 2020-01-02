@@ -1,0 +1,21 @@
+{
+  "name": "meter/mime",
+  "description": "Compose, render, parse, and validate MIME in PHP 7",
+  "type": "library",
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Wes Roberts",
+      "email": "awa7@proxyto.me"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Virtu\\Mime\\": "./src",
+      "Virtu\\Mime\\Spec\\": "./spec"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  }
+}
