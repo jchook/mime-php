@@ -1,15 +1,17 @@
 # MIME
 
-![Version 0.0.1](https://img.shields.io/badge/v-0.0.1-red) ![License MIT](https://img.shields.io/badge/license-MIT-brightgreen) ![Test Coverage 100%](https://img.shields.io/badge/test%20coverage-100%25-brightgreen)
+![Version 0.0.1](https://img.shields.io/badge/v-0.0.1-red)
+![License MIT](https://img.shields.io/badge/license-MIT-brightgreen)
+![Test Coverage 100%](https://img.shields.io/badge/test%20coverage-100%25-brightgreen)
 
 Compose, render, parse, and validate MIME documents in PHP 7.
 
 ## Design Goals
 
 - Complete yet minimal
-- Compliant yet resillient
+- Compliant yet resilient
 - Convenient yet secure
-- Conteporary yet reliable
+- Contemporary yet reliable
 
 ## Roadmap
 
