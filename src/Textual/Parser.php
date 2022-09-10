@@ -690,6 +690,11 @@ class Parser
 			return new Mailbox($name, $localPart, $domain);
 		}
 
+		// angle-addr (no display name)
+		elseif ($this->match('angleAddr')) {
+			return new Mailbox('', ...$this->previous());
+		}
+
 		return null;
 	}
 
@@ -1457,7 +1462,7 @@ class Parser
 	/**
 	 * Check for an arbitrary string
 	 */
-	private function checkRange(int $start = 0, string $str): int
+	private function checkRange(int $start, string $str): int
 	{
 		$len = strlen($str);
 		return $this->peek($start, $len) === $str ? $len : 0;
@@ -1712,7 +1717,7 @@ class Parser
 			$n -= $len;
 
 			// Consume beyond buffer?
-			// Again, I have never seen this error happen and no idea how.
+			// I have never seen this error happen and no idea how to test it.
 			// @codeCoverageIgnoreStart
 			if ($fullLen < $expectedLen) {
 				if ($this->eof() || feof($this->source)) {

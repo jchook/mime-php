@@ -1,6 +1,6 @@
 {
-  "name": "meter/mime",
-  "description": "Compose, render, parse, and validate MIME in PHP 7",
+  "name": "email/mime",
+  "description": "Compose, render, parse, alter, and validate MIME in PHP 8+",
   "type": "library",
   "license": "ISC",
   "authors": [
@@ -15,7 +15,11 @@
       "Virtu\\Mime\\Spec\\": "./spec"
     }
   },
+  "require": {
+    "php": ">=8.0.0",
+    "ext-intl": "*"
+  },
   "require-dev": {
-    "phpunit/phpunit": "^8.4"
+    "phpunit/phpunit": "^9.4"
   }
 }

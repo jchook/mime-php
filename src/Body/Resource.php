@@ -57,13 +57,13 @@ class Resource implements BodyStreamInterface, Iterator
 		}
 	}
 
-	public function current() //: mixed
+	public function current(): mixed
 	{
 		$this->initialize();
 		return $this->buf;
 	}
 
-	public function key() //: scalar
+	public function key(): mixed
 	{
 		return $this->pos;
 	}

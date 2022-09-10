@@ -4,7 +4,6 @@ namespace Virtu\Mime\Header;
 
 use Virtu\Mime\Element\ElementInterface;
 
-use DateTimeInterface;
 use TypeError;
 use IteratorAggregate;
 use Traversable;

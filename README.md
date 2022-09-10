@@ -1,10 +1,10 @@
 # MIME
 
-![Version 0.0.1](https://img.shields.io/badge/v-0.0.1-red)
+![Version 0.0.2](https://img.shields.io/badge/v-0.0.2-yellow)
 ![License MIT](https://img.shields.io/badge/license-MIT-brightgreen)
-![Test Coverage 100%](https://img.shields.io/badge/test%20coverage-100%25-brightgreen)
+![Test Coverage 98%](https://img.shields.io/badge/test%20coverage-98%25-brightgreen)
 
-Compose, render, parse, and validate MIME documents in PHP 7.
+Compose, parse, alter, render, and validate MIME documents in PHP 8+.
 
 ## Design Goals
 
@@ -12,6 +12,15 @@ Compose, render, parse, and validate MIME documents in PHP 7.
 - Compliant yet resilient
 - Convenient yet secure
 - Contemporary yet reliable
+
+## Why use this library?
+
+- Clean API
+- Well-tested
+- RFC compliance and correctness
+- Predictable and configurable RAM usage, even on large messages
+- Unified API for composing, parsing, rendering, and validating MIME
+- MIT license
 
 ## Roadmap
 
@@ -30,11 +39,12 @@ To compose new MIME messages, you can either:
 - use the friendly `MessageBuilder` tool
 - or manually construct an <abbr title="Abstract Syntax Tree">AST</abbr>
 
-#### MessageBuilder
+#### Message Builder
 
 The `MessageBuilder` provides some syntactic sugar for composing new messages.
 
-The final call to `->getMessage()` returns an AST similar to the one shown below.
+The final call to `->getMessage()` returns an AST similar to the one shown
+below.
 
 ```php
 <?php
@@ -60,7 +70,9 @@ $message = (new MessageBuilder)
 
 Alternatively, enjoy total control by manually constructing an AST.
 
-**The AST represents nearly every single byte of the MIME document.** You can even generate invalid MIME if you choose. For example, if you do not include `new MimeVersion()` then `Renderer` will not render a `MIME-Version` header.
+**The AST represents nearly every single byte of the MIME document.** You can
+even generate invalid MIME if you choose. For example, if you do not include
+`new MimeVersion()` then `Renderer` will not render a `MIME-Version` header.
 
 ```php
 <?php
@@ -121,7 +133,8 @@ $message = new Message([
 
 ### Render
 
-The `Renderer` allows you to translate a MIME message AST into a string or iterable.
+The `Renderer` allows you to translate a MIME message AST into a string or
+iterable.
 
 ```php
 <?php
@@ -134,7 +147,8 @@ $iterable = $renderer->renderMessage($message);
 ?>
 ```
 
-Returning an `iterable` keeps memory usage predictable and configurable, even for very large attachments.
+Returning an `iterable` keeps memory usage predictable and configurable, even
+for very large attachments.
 
 You can easily write the output to any stream:
 
@@ -156,7 +170,8 @@ rewind($stream);
 ?>
 ```
 
-Or if you really want to throw caution to the wind and render the entire MIME document as a string in RAM, you can do so.
+Or if you really want to throw caution to the wind and render the entire MIME
+document as a string in RAM, you can do so.
 
 ```php
 <?php
@@ -168,7 +183,8 @@ echo $renderer->renderMessageString($message);
 
 ### Parse
 
-The `Parser`, when given `$stream`, will generate an AST identical to the one above. <!-- NB. store to Text until string length necessitates Resource -->
+The `Parser`, when given `$stream`, will generate an AST identical to the one
+above. <!-- NB. store to Text until string length necessitates Resource -->
 
 ```php
 <?php
@@ -185,7 +201,9 @@ $message = $parser->parseMessage($stream);
 
 The `Validator` validates a MIME message AST.
 
-Note, the `Parser` detects syntax errors in the text, but the `Validator` detects structural errors in the AST. You can use the `Validator` on messages you have parsed or composed.
+Note, the `Parser` detects syntax errors in the text, but the `Validator`
+detects structural errors in the AST. You can use the `Validator` on messages
+you have parsed or composed.
 
 ```php
 <?php
@@ -198,19 +216,35 @@ $result = $validator->validateMessage($message);
 ?>
 ```
 
+## Performance
+
+Composing, rendering, altering, and validating MIME documents all have good
+performance (for PHP), in terms of both RAM and CPU time.
+
+Right now, parsing a large MIME document takes about 20ms due to emphasis on
+parser correctness and RAM efficiency. I plan to improve the parser performance
+significantly. In the meantime, it scales horizontally due to predictable and
+configurable RAM usage.
+
 ## Specification
 
-- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322.html) - Internet Message Format
+- [RFC 5322](https://www.rfc-editor.org/rfc/rfc5322.html) - Internet Message
+  Format
   - Obsoletes [RFC 822](https://www.rfc-editor.org/rfc/rfc822)
   - Obsoletes [RFC 2822](https://www.rfc-editor.org/rfc/rfc2822)
 - [RFC 2045](https://www.rfc-editor.org/rfc/rfc2045) - MIME Message Format
 - [RFC 2046](https://www.rfc-editor.org/rfc/rfc2046) - MIME Media Types
 - [RFC 2047](https://www.rfc-editor.org/rfc/rfc2047) - MIME Non-ASCII Headers
-- [RFC 2048](https://www.rfc-editor.org/rfc/rfc2048) - MIME Media Type Registration
-- [RFC 2049](https://www.rfc-editor.org/rfc/rfc2048) - MIME Conformance &amp; Examples
-- [RFC 2231](https://tools.ietf.org/html/rfc2231) - Internationalized Header Parameters
-- [RFC 6530](https://www.rfc-editor.org/rfc/rfc6530.html) - Internationalized Email Framework
-- [RFC 6532](https://www.rfc-editor.org/rfc/rfc6532.html) - Internationalized Email Headers
+- [RFC 2048](https://www.rfc-editor.org/rfc/rfc2048) - MIME Media Type
+  Registration
+- [RFC 2049](https://www.rfc-editor.org/rfc/rfc2048) - MIME Conformance &amp;
+  Examples
+- [RFC 2231](https://tools.ietf.org/html/rfc2231) - Internationalized Header
+  Parameters
+- [RFC 6530](https://www.rfc-editor.org/rfc/rfc6530.html) - Internationalized
+  Email Framework
+- [RFC 6532](https://www.rfc-editor.org/rfc/rfc6532.html) - Internationalized
+  Email Headers
 
 ## Contribute
 
@@ -221,8 +255,19 @@ $result = $validator->validateMessage($message);
 
 Copyright 2019 Wesley Roberts
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

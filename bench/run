@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+use Virtu\Mime;
+
+require_once(dirname(__DIR__) . '/vendor/autoload.php');
+require_once(__DIR__ . '/vendor/autoload.php');
+
+ini_set('display_errors', 'on');
+
+$iters = 1000;
+$sourcePath = __DIR__ . '/etc/example.mime';
+$source = fopen($sourcePath, 'r');
+
+function runTest($name, $iters, $fn) {
+  $start = microtime(true);
+  for ($i = 0; $i < $iters; $i++) {
+    $fn();
+  }
+  $dur = microtime(true) - $start;
+  $ops = $iters / $dur;
+  printf("%s\t%f ops/sec\n", $name, $ops);
+}
+
+runTest('php-mime', 10, function() use ($source) {
+  $parser = new Mime\Textual\Parser();
+  rewind($source);
+  $message = $parser->parseMessage($source);
+  foreach ($message as $part);
+});
+
+runTest('php-mime-mail', $iters, function() use ($sourcePath) {
+  $parser = new PhpMimeMailParser\Parser();
+  $source = fopen($sourcePath, 'r');
+  $parser->setStream($source);
+  $parser->getAddresses('from');
+  $parser->getAddresses('to');
+  $parser->getHeaders();
+  $parser->getMessageBody('htmlEmbedded');
+  $parser->getMessageBody('text');
+  $parser->getAttachments();
+  // fclose($source);
+});
+
+runTest('mailparse', $iters, function() use ($source) {
+  $data = stream_get_contents($source);
+  rewind($source);
+  $msg = mailparse_msg_create();
+  mailparse_msg_parse($msg, $data);
+  mailparse_msg_free($msg);
+});
+
+runTest('zbateston', 100, function() use ($source) {
+  $parser = new \ZBateson\MailMimeParser\MailMimeParser();
+  $parser->parse($source);
+  rewind($source);
+});
+
+
+fclose($source);

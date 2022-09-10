@@ -1,0 +1,16 @@
+{
+  "name": "email/mime-bench",
+  "description": "Benchmarking mime parsers",
+  "type": "project",
+  "require": {
+    "php-mime-mail-parser/php-mime-mail-parser": "^6.0",
+    "zbateson/mail-mime-parser": "^1.2"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wes Roberts",
+      "email": "g0r6p@a.zinc.email"
+    }
+  ]
+}

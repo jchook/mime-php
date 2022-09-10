@@ -1,10 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/sh
 DIR=$(dirname $(dirname "$(readlink -f "$0")"))
 "$@"
 
-echo "Watching $DIR/{src,spec}/**/*.php for changes..."
+echo "Watching $DIR/{bin,src,spec}/**/*.php for changes..."
 
-inotifywait -q -e attrib -e close_write -r -m "$DIR/src" "$DIR/spec" --format '%w%f' |
+inotifywait -q -e attrib -e close_write -r -m \
+  "$DIR/src" "$DIR/spec" "$DIR/bin" --format '%w%f' |
 while read -r filename; do
   echo "changed: $filename"
   if grep -q -E '\.php$' <<< "$filename"; then

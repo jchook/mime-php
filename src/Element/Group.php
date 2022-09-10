@@ -5,8 +5,8 @@ namespace Virtu\Mime\Element;
 use Virtu\Mime\Element\MailboxInterface;
 use Virtu\Mime\Element\GroupInterface;
 
-use ArrayIterator;
 use IteratorAggregate;
+use Traversable;
 
 class Group implements IteratorAggregate, GroupInterface
 {
@@ -14,6 +14,7 @@ class Group implements IteratorAggregate, GroupInterface
 	private $mailboxes;
 
 	/**
+	 * @param string $name
 	 * @param MailboxInterface[] $mailboxes
 	 */
 	public function __construct(string $name, iterable $mailboxes = [])
@@ -35,7 +36,7 @@ class Group implements IteratorAggregate, GroupInterface
 		return $this->name;
 	}
 
-	public function getIterator()
+	public function getIterator(): Traversable
 	{
 		yield from $this->mailboxes;
 	}

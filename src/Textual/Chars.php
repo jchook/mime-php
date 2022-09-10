@@ -54,17 +54,17 @@ class Chars implements Iterator
 		$this->pointer = $pointer;
 	}
 
-	public function current() // : mixed
+	public function current(): mixed
 	{
 		return $this->current;
 	}
 
-	public function key() // : scalar
+	public function key(): mixed
 	{
 		return $this->index;
 	}
 
-	public function next() // : void
+	public function next(): void
 	{
 		switch ($this->charset) {
 			case 'utf-8':
@@ -82,14 +82,14 @@ class Chars implements Iterator
 		}
 	}
 
-	public function rewind() // : void
+	public function rewind(): void
 	{
 		$this->pointer = 0;
 		$this->index = -1;
 		$this->next();
 	}
 
-	public function valid() // : bool
+	public function valid(): bool
 	{
 		return !is_null($this->current);
 	}
@@ -145,7 +145,7 @@ class Chars implements Iterator
 	/**
 	 * str_replace for multibyte strings
 	 */
-	function mbStrReplace(
+	public static function mbStrReplace(
 		string $search,
 		string $replace,
 		string $subject,

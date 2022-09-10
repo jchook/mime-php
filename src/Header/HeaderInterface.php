@@ -2,11 +2,11 @@
 
 namespace Virtu\Mime\Header;
 
-use Virtu\Mime\PartInterface;
 use Traversable;
 
 interface HeaderInterface extends Traversable
 {
+	public function getCharset(): ?string;
 	public function getName(): string;
 	public function hasName(string $name): bool;
 	public function getValue(): iterable;

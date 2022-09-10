@@ -40,7 +40,7 @@ class MediaTypeTest extends TestCase
 		try {
 			$this->assertFileExists($path);
 			rename($path, $newPath);
-			$this->assertFileNotExists($path);
+			$this->assertFileDoesNotExist($path);
 			MediaType::getFileExtensionTypes();
 		} catch (RuntimeException $e) {
 		} finally {

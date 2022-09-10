@@ -3,8 +3,9 @@
 namespace Virtu\Mime\Codec;
 
 use RuntimeException;
-use STREAM_FILTER_READ;
 use TypeError;
+
+use const STREAM_FILTER_READ;
 
 abstract class StreamFilter
 {

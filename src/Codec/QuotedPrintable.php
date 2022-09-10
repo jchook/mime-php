@@ -2,10 +2,6 @@
 
 namespace Virtu\Mime\Codec;
 
-use RuntimeException;
-use STREAM_FILTER_READ;
-use TypeError;
-
 class QuotedPrintable extends StreamFilter implements CodecInterface
 {
 	protected function getEncodeFilterName(): string

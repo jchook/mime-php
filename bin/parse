@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+
+ini_set('display_errors', 'on');
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+use Virtu\Mime\Textual\Parser;
+use Virtu\Mime\Textual\Renderer;
+use Virtu\Mime\Contract\Validator;
+
+$parser = new Parser();
+$renderer = new Renderer();
+$validator = new Validator();
+
+// Parse
+$message = $parser->parseMessage(STDIN);
+
+// Validate
+$lint = $validator->validateMessage($message);
+foreach ($lint as $ruleName => $violations) {
+  foreach ($violations as $violation) {
+    fwrite(STDERR, "LINTER ERROR: $ruleName: $violation\n");
+  }
+}
+
+// Render
+$out = $renderer->renderMessage($message);
+foreach ($out as $chunk) {
+  echo $chunk;
+}
+

@@ -9,7 +9,6 @@ use Virtu\Mime\Body\Text;
 use Virtu\Mime\Element\DateTimeImmutable;
 use Virtu\Mime\Element\DateTimeInterface;
 use Virtu\Mime\Element\ElementInterface;
-use Virtu\Mime\Element\GroupInterface;
 use Virtu\Mime\Element\Keyword;
 use Virtu\Mime\Element\KeywordInterface;
 use Virtu\Mime\Element\Mailbox;
@@ -21,7 +20,6 @@ use Virtu\Mime\Header\AddressListHeader;
 use Virtu\Mime\Header\ContentDisposition;
 use Virtu\Mime\Header\ContentTransferEncoding;
 use Virtu\Mime\Header\ContentType;
-use Virtu\Mime\Header\DateHeader;
 use Virtu\Mime\Header\Header;
 use Virtu\Mime\Header\IdentifierListHeader;
 use Virtu\Mime\Header\MimeVersion;
@@ -313,7 +311,7 @@ class MessageBuilder
 	private function parseDateTime($dateTime): DateTimeInterface
 	{
 		if (is_string($dateTime) || is_null($dateTime)) {
-			return new DateTimeImmutable($dateTime);
+			return new DateTimeImmutable($dateTime ?? 'now');
 		} elseif ($dateTime instanceof RealDateTimeInterface) {
 			return new DateTimeImmutable($dateTime->format('r'));
 		} else {

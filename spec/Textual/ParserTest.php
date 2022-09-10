@@ -38,9 +38,9 @@ class ParserTest extends TestCase
 			$source = $this->loadSample($ii);
 			$message = $parser->parseMessage($source);
 			$this->assertInstanceOf(Message::class, $message);
+			// Make sure we read the entire message
+			$this->assertTrue(feof($source));
 		}
-
-		$this->assertTrue(true);
 	}
 
 	public function testParseEmptyString()
@@ -288,6 +288,7 @@ class ParserTest extends TestCase
 		$source = implode("\r\n", [
 			'From: "Wes Roberts" <wes@wzap.org>',
 			'To: , ',
+			' <hrosson@warren-wilson.edu>, ',
 			' Sam Scoville <sam@wzap.org> ,',
 			' "Evan \"The Rock\" Wantland" <ewantland@[127.0.0.1]> (\(Senior Badass\))',
 			' ,friends: (my best friends)',
@@ -351,6 +352,7 @@ class ParserTest extends TestCase
 		$expected = new Message([
 			new Header('From', new Mailbox('Wes Roberts', 'wes', 'wzap.org')),
 			new Header('To', [
+				new Mailbox('', 'hrosson', 'warren-wilson.edu'),
 				new Mailbox('Sam Scoville', 'sam', 'wzap.org'),
 				new Mailbox('Evan "The Rock" Wantland', 'ewantland', '127.0.0.1'),
 				new Group('friends', []),

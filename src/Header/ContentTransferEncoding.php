@@ -23,3 +23,4 @@ class ContentTransferEncoding extends Header
 		return $this->getValue()[0];
 	}
 }
+
