@@ -52,7 +52,7 @@ runTest('mailparse', $iters, function() use ($source) {
 
 runTest('zbateston', 100, function() use ($source) {
   $parser = new \ZBateson\MailMimeParser\MailMimeParser();
-  $parser->parse($source);
+  $parser->parse($source, false);
   rewind($source);
 });
 

@@ -9,8 +9,11 @@ RUN apk add --no-cache icu-dev \
     autoconf \
     g++ \
     make \
+    re2c \
   && docker-php-ext-install intl \
   && pecl install xdebug \
+  && pecl install mailparse \
+  && docker-php-ext-enable mailparse xdebug \
   && wget -qO /usr/bin/composer https://github.com/composer/composer/releases/download/$COMPOSER_VERSION/composer.phar \
   && chmod +x /usr/bin/composer \
   && wget https://github.com/jchook/msglint/archive/refs/tags/v$MSGLINT_VERSION.tar.gz \
@@ -22,8 +25,10 @@ RUN apk add --no-cache icu-dev \
   && rm -rf msglint-$MSGLINT_VERSION v$MSGLINT_VERSION.tar.gz \
   && apk del .build-deps
 
-RUN docker-php-ext-enable xdebug
+RUN mkdir /composer \
+  && chmod 0777 /composer
 
+VOLUME /composer
 VOLUME /app
 WORKDIR /app
 CMD ["/usr/bin/sh"]

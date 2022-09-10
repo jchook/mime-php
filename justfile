@@ -13,6 +13,7 @@ run:
   docker run --name php-mime-1 --rm --init -dt \
     --name php-mime-1 \
     --env XDEBUG_MODE=coverage \
+    --env COMPOSER_HOME=/composer \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd)":/app:rw \
     -p {{php_port}}:{{php_port}} \
